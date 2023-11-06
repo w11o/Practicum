@@ -106,9 +106,7 @@ line = 'скобка_открывается пять плюс два скобк�
 
 res = ''
 temp=0
-def get_key(value):    #получение ключа через значение
-    for i, j in number_dict.items():
-        if j == value: return i
+
 
 for i in range(len(line)):
     if line[i] in operations.keys():
