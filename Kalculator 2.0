@@ -72,11 +72,11 @@ def convert_digit(res):
     if -1 < res < 20: # c 1 до 19
         return print(get_key(str(res)))
 
-    if 20 < res < 100 and res % 10 != 0: #с 20 до 100
-        tens, units = divmod(res, 10)  # answer // 10, answer % 10
+    if 20 < res < 100 and res % 10 != 0:      #с 20 до 100
+        tens, units = divmod(res, 10)           # answer // 10, answer % 10
         return print(get_key(str(tens * 10)), get_key(str(units)))
 
-    elif 100 < res < 1000 and res % 100 != 0: #c 100 до 1000
+    elif 100 < res < 1000 and res % 100 != 0:           #c 100 до 1000
         if res % 10 == 0:
             return print(get_key(str((res // 100 * 100))), get_key(str((res % 100))))
 
@@ -87,7 +87,7 @@ def convert_digit(res):
             return print(get_key(str((res // 100 * 100))), get_key(str((res % 100 // 10 * 10))),
                          get_key(str((res % 10))))
 
-    elif 1000 < res < 10000: #с 1000 до 10000
+    elif 1000 < res < 10000:        #с 1000 до 10000
         if res % 100 == 0:
             return print(get_key(str((res // 1000 * 1000))), get_key(str((res % 1000))))
 
@@ -106,7 +106,7 @@ def convert_digit(res):
     else: # c 1 до 19
         return print((get_key(str(res))))
 
-line = 'пять минус минус один'.split()
+line = input().split()
 
 res = ''
 temp=0
@@ -132,11 +132,11 @@ if temp != 0:
     res += str(temp)
     res += ' '
 
-if  eval(res) < 0: #реализация отрицательных чисел
+if  eval(res) < 0:              #реализация отрицательных чисел
     print('минус', end = ' ')
     convert_digit((eval(res) * (-1)))
 
 else:
     convert_digit((eval(res)))
 
-print('Debug moment:',res,'=', eval(res), line)
+#print('Debug moment:',res,'=', eval(res), line)
