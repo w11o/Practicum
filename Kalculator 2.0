@@ -1,0 +1,138 @@
+operations = {
+    'плюс': '+',
+    'минус': '-',
+    'умножить': '*',
+    'разделить': '/',
+    'скобка_открывается': '(',
+    'скобка_закрывается': ')'}
+
+number_dict = {
+    "ноль": "0",
+    "один": "1",
+    "два": "2",
+    "три": "3",
+    "четыре": "4",
+    "пять": "5",
+    "шесть": "6",
+    "семь": "7",
+    "восемь": "8",
+    "девять": "9",
+    "десять": "10",
+    "одиннадцать": "11",
+    "двенадцать": "12",
+    "тринадцать": "13",
+    "четырнадцать": "14",
+    "пятнадцать": "15",
+    "шестнадцать": "16",
+    "семнадцать": "17",
+    "восемнадцать": "18",
+    "девятнадцать": "19",
+
+    "двадцать": "20",
+    "тридцать": "30",
+    "сорок": "40",
+    "пятьдесят": "50",
+    "шестьдесят": "60",
+    "семьдесят": "70",
+    "восемьдесят": "80",
+    "девяносто": "90",
+
+    'сто': "100",
+    'двести': "200",
+    'триста': "300",
+    'четыреста': "400",
+    'пятьсот': "500",
+    'шестьсот': "600",
+    'семьсот': "700",
+    'восемьсот': "800",
+    'девятьсот': "900",
+
+    'тысяча': "1000",
+    'две-тысячи': "2000",
+    'три-тысячи': "3000",
+    'четыре-тысячи': "4000",
+    'пять-тысяч': "5000",
+    'шесть-тысяч': "6000",
+    'семь-тысяч': "7000",
+    'восемь-тысяч': "8000",
+    'девять-тысяч': "9000" }
+
+def get_key(res):    #получение ключа через значение
+
+    for i, j in number_dict.items():
+        if j == res: return i
+
+
+def convert_digit(res):
+
+    if -1 < res < 20: # c 1 до 19
+        return print(get_key(str(res)))
+
+    if 20 < res < 100 and res % 10 != 0: #с 20 до 100
+        tens, units = divmod(res, 10)  # answer // 10, answer % 10
+        return print(get_key(str(tens * 10)), get_key(str(units)))
+
+    elif 100 < res < 1000 and res % 100 != 0: #c 100 до 1000
+        if res % 10 == 0:
+            return print(get_key(str((res // 100 * 100))), get_key(str((res % 100))))
+
+        if res % 100 < 10:
+            return print(get_key(str((res // 100 * 100))), get_key(str((res % 10))))
+
+        else:
+            return print(get_key(str((res // 100 * 100))), get_key(str((res % 100 // 10 * 10))),
+                         get_key(str((res % 10))))
+
+    elif 1000 < res < 10000: #с 1000 до 10000
+        if res % 100 == 0:
+            return print(get_key(str((res // 1000 * 1000))), get_key(str((res % 1000))))
+
+        elif res % 10 == 0:
+            return print(get_key(str((res // 1000 * 1000))), get_key(str((res % 1000 // 100 * 100))),
+                         get_key(str((res % 100 // 10 * 10))))
+
+        elif res % 100 // 10 * 10 == 0:
+            return print(get_key(str((res // 1000 * 1000))), get_key(str((res % 1000 // 100 * 100)))
+                         , get_key(str((res % 10))))
+
+        else:
+            return print(get_key(str((res // 1000 * 1000))), get_key(str((res % 1000 // 100 * 100))),
+                         get_key(str(res % 100 // 10 * 10)), get_key(str(res % 10)))
+
+    else: # c 1 до 19
+        return print((get_key(str(res))))
+
+line = 'скобка_открывается пять плюс два скобка_закрывается умножить на три минус один'.split()
+
+res = ''
+temp=0
+def get_key(value):    #получение ключа через значение
+    for i, j in number_dict.items():
+        if j == value: return i
+
+for i in range(len(line)):
+    if line[i] in operations.keys():
+        if temp != 0:
+            res += str(temp)
+            res += ' '
+
+
+        temp = 0
+        res += operations.get(line[i])
+
+        res+= ' '
+
+
+    if line[i] in list(number_dict.keys()):
+
+        temp += int(number_dict.get(line[i]))
+if temp != 0:
+    res += str(temp)
+    res += ' '
+
+
+convert_digit((eval(res)))
+
+
+print('Debug moment:',res,'=', eval(res), line)
+#print(get_key(str(eval(res))))
