@@ -1,3 +1,7 @@
+#Manual: здесь реализованы пункты 3) 4) 5)
+#Input: вводить 'скобка_открывается(закрывается)'; 'две-тысячи', 'три-тысячи' и т.д.
+
+
 operations = {
     'плюс': '+',
     'минус': '-',
@@ -102,7 +106,7 @@ def convert_digit(res):
     else: # c 1 до 19
         return print((get_key(str(res))))
 
-line = 'скобка_открывается пять плюс два скобка_закрывается умножить на три минус один'.split()
+line = 'пять минус минус один'.split()
 
 res = ''
 temp=0
@@ -128,9 +132,11 @@ if temp != 0:
     res += str(temp)
     res += ' '
 
+if  eval(res) < 0: #реализация отрицательных чисел
+    print('минус', end = ' ')
+    convert_digit((eval(res) * (-1)))
 
-convert_digit((eval(res)))
-
+else:
+    convert_digit((eval(res)))
 
 print('Debug moment:',res,'=', eval(res), line)
-#print(get_key(str(eval(res))))
